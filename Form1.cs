@@ -35,6 +35,19 @@ namespace Vyjimky09
 
         private void button2_Click(object sender, EventArgs e)
         {
+            int n = int.Parse(textBox1.Text);
+            try
+            {
+                FileStream fs = new FileStream("Cisla.dat", FileMode.Open, FileAccess.Read);
+                using (BinaryReader br = new BinaryReader(fs))
+                {
+
+                }
+            }
+            catch(FileNotFoundException)
+            {
+
+            }
 
         }
     }
