@@ -35,20 +35,45 @@ namespace Vyjimky09
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int n = int.Parse(textBox1.Text);
+            listBox1.Items.Clear();
             try
             {
-                FileStream fs = new FileStream("Cisla.dat", FileMode.Open, FileAccess.Read);
-                using (BinaryReader br = new BinaryReader(fs))
+                int n = int.Parse(textBox1.Text);
+                int sc = 0;
+                int pc = 0;
+                try
                 {
-
+                    using (FileStream fs = new FileStream("Cisla.dat", FileMode.Open, FileAccess.Read))
+                    {
+                        BinaryReader br = new BinaryReader(fs);
+                        {
+                            try
+                            {
+                                for (int i = 0; i < n; i++)
+                                {
+                                    checked(int cislo = br.ReadInt32());
+                                    listBox1.Items.Add(cislo);
+                                    sc += cislo;
+                                    pc++;
+                                }
+                            }
+                            catch
+                            {
+                            }
+                        }
+                        fs.Close();
+                    }
+                    MessageBox.Show("Aritmetický průměr je : "+(double)sc / pc + " Počet: " + pc + " Součet: " + sc);
+                }
+                catch (FileNotFoundException)
+                {
+                    MessageBox.Show("Nenalezený soubor");
                 }
             }
-            catch(FileNotFoundException)
+            catch(FormatException)
             {
-
+                MessageBox.Show("Špatně zadaná čísla");
             }
-
         }
     }
 }
