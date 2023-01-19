@@ -51,13 +51,13 @@ namespace Vyjimky09
                             {
                                 for (int i = 0; i < n; i++)
                                 {
-                                    checked(int cislo = br.ReadInt32());
+                                    int cislo = br.ReadInt32();
                                     listBox1.Items.Add(cislo);
                                     sc += cislo;
                                     pc++;
                                 }
                             }
-                            catch
+                            catch(EndOfStreamException)
                             {
                             }
                         }
